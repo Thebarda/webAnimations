@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Snow Animation</title>
+  </head>
+  <style>
+    body {
+      background-color: #121231;
+      height: 100%;
+      overflow-y: hidden;
+    }
+    .animationSnow {
+      animation-name: snowFalling;
+      animation-direction: normal;
+      animation-timing-function: linear;
+    }
+
+    img {
+      position: absolute;
+    }
+
+    @keyframes snowFalling {
+      from {
+        margin-top: -65px;
+        transform: rotate(0deg);
+      }
+      to {
+        margin-top: 100vh;
+        transform: rotate(100deg);
+      }
+    }
+    @-o-keyframes snowFalling {
+      from {
+        margin-top: -65px;
+        transform: rotate(0deg);
+      }
+      to {
+        margin-top: 100vh;
+        transform: rotate(100deg);
+      }
+    }
+    @-moz-keyframes snowFalling {
+      from {
+        margin-top: -65px;
+        transform: rotate(0deg);
+      }
+      to {
+        margin-top: 100vh;
+        transform: rotate(100deg);
+      }
+    }
+    @-webkit-keyframes snowFalling {
+      from {
+        margin-top: -65px;
+        transform: rotate(0deg);
+      }
+      to {
+        margin-top: 100vh;
+        transform: rotate(100deg);
+      }
+    }
+  </style>
+  <body id="content">
+    <script>
+      const MAXWIDTH = window.innerWidth - 80
+      const MINWIDTH = 80
+      let counter = 0
+      let counterDel = 0
+      setInterval(() => {
+        const x = Math.floor(Math.random() * (MAXWIDTH - MINWIDTH + 1)) + MINWIDTH
+        const img = document.createElement('img')
+        const weight = Math.floor(Math.random() * (3 - 1.5 + 1)) + 1.5
+        img.src = './flocon.png'
+        img.style.width = weight + 'rem'
+        img.style.marginLeft = x + 'px'
+        img.style.marginTop = '-65px'
+        img.style.animationDuration = Math.floor((1 / weight) * 10) + 's'
+        img.className = 'animationSnow'
+        img.id = 'img_' + counter
+        document.getElementById('content').appendChild(img)
+        counter++
+      }, 300)
+      setTimeout(() => {
+        setInterval(() => {
+          document.getElementById('img_' + counterDel).remove()
+          counterDel++
+        }, 300)
+      }, 6200)
+    </script>
+  </body>
+</html>
