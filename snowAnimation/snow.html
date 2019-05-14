@@ -65,11 +65,12 @@
   </style>
   <body id="content">
     <script>
-      const MAXWIDTH = window.innerWidth - 80
+      let MAXWIDTH = window.innerWidth - 80
       const MINWIDTH = 80
       let counter = 0
       let counterDel = 0
       setInterval(() => {
+        MAXWIDTH = window.innerWidth - 80
         const x = Math.floor(Math.random() * (MAXWIDTH - MINWIDTH + 1)) + MINWIDTH
         const img = document.createElement('img')
         const weight = Math.floor(Math.random() * (3 - 1.5 + 1)) + 1.5
@@ -85,7 +86,9 @@
       }, 300)
       setTimeout(() => {
         setInterval(() => {
-          document.getElementById('img_' + counterDel).remove()
+          if (document.getElementById('img_' + counterDel)) {
+            document.getElementById('img_' + counterDel).remove()
+          }
           counterDel++
         }, 300)
       }, 6200)
